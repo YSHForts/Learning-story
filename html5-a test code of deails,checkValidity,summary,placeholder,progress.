@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>progress-test</title>
+    <script>
+        function check() {
+            var email = document.getElementById("email");
+            if (email.value == "") {
+                alert("Please input your email address")
+                return false;
+            }
+            else if (!email.checkValidity()) {
+                alert("Please input correct email address!")
+                return false;
+            }
+            else
+                alert("Valid Email Address")
+        }
+        function click(){
+            var progress=document.getElementById("progress")
+            progress.getElementsByTagName("span")[10].textContent="0"
+            for (var i=0;i<=100;i++)
+                updateProgress(i);
+        }
+        function updateProgress(newValue){
+            var progress=document.getElementById("progress")
+            progress.value=newValue
+            progress.getElementsByTagName("span")[10].textContent=newValue
+        }
+    </script>
+</head>
+<body>
+<details>
+    <summary>Address</summary>
+    <br/>
+    <form id="testform" onsubmit="return check();" novalidate="novalidate">
+        <label for="email">Email</label>
+        <input name="email" id="email" type="email"placeholder="Please input your email"/><br/><br/>
+        <input type="submit">
+    </form>
+    <section>
+        <p><progress id="progress" max="100"><span>0</span>%</progress></p>
+        <input type="button" onclick="click()" value="process percent"/>
+    </section>
+</details>
+
+</body>
+</html>
